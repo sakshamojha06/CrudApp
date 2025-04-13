@@ -54,5 +54,17 @@ namespace RPSApi.Controllers
             student.Grade = updatedStudent.Grade;
             return Ok("Student updated successfully");
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStudent(int id)
+        {
+            var student = students.FirstOrDefault(s => s.id == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            students.Remove(student);
+            return Ok("Student deleted successfully");
+        }
     }
 }
