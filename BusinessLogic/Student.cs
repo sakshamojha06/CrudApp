@@ -1,4 +1,4 @@
-﻿namespace RPSApi.Models
+﻿namespace BusinessLogic
 {
     public class Student
     {

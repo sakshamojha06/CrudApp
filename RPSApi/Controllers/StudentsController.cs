@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RPSApi.Models;
+using BusinessLogic;
 
 namespace RPSApi.Controllers
 {
