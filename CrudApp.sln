@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{9DEECBA8-83B2-4EEC-B92E-4C66A5449A5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksApi", "BooksApi\BooksApi.csproj", "{B075CEF9-2AC7-4630-9966-71B4A14F2701}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitConversionApi", "UnitConversionApi\UnitConversionApi.csproj", "{94079C35-7071-4D0B-A9C8-ABDD41591FE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9DEECBA8-83B2-4EEC-B92E-4C66A5449A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DEECBA8-83B2-4EEC-B92E-4C66A5449A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DEECBA8-83B2-4EEC-B92E-4C66A5449A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B075CEF9-2AC7-4630-9966-71B4A14F2701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B075CEF9-2AC7-4630-9966-71B4A14F2701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B075CEF9-2AC7-4630-9966-71B4A14F2701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B075CEF9-2AC7-4630-9966-71B4A14F2701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94079C35-7071-4D0B-A9C8-ABDD41591FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94079C35-7071-4D0B-A9C8-ABDD41591FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94079C35-7071-4D0B-A9C8-ABDD41591FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94079C35-7071-4D0B-A9C8-ABDD41591FE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
