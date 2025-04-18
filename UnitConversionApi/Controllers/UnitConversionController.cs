@@ -30,7 +30,7 @@ namespace UnitConversionApi.Controllers
         [HttpGet("findingkilometers")]
         public IActionResult FindingKilometers(double miles)
         {
-            var kilometers = miles * 1.60934;
+            var kilometers = miles / 0.621371;
             return Ok(kilometers);
         }
 
@@ -44,7 +44,7 @@ namespace UnitConversionApi.Controllers
         [HttpGet("findingkilograms")]
         public IActionResult FindingKilograms(double pounds)
         {
-            var kilograms = pounds * 0.453592;
+            var kilograms = pounds / 2.20462;
             return Ok(kilograms);
         }
     }
