@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieReviewApi.Models;
 
 namespace MovieReviewApi.Controllers
 {
@@ -56,50 +57,26 @@ namespace MovieReviewApi.Controllers
 
             if (movie == null) return NotFound("Movie not found");
 
+            var dtos = GetDtos(movie.Reviews);
 
-            return Ok(movie.Reviews);
+            return Ok(dtos);
         }
-    }
 
-    public class Movie
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public List<Review> Reviews { get; set; }
-
-        public Movie(string name)
+        private List<ReviewDto> GetDtos(List<Review> reviews)
         {
-            Id = Guid.NewGuid();
-            Name = name;
-            Reviews = new List<Review>();
+            var dtos = new List<ReviewDto>();
+
+            foreach (var item in reviews)
+            {
+                var dto = new ReviewDto();
+                dto.Author = item.Author;
+                dto.Star = item.Star;
+                dto.Text = item.Text;
+
+                dtos.Add(dto);
+            }
+
+            return dtos;
         }
-    }
-
-    public class Review: ReviewDto
-    {
-        public Guid Id { get; set; }
-
-        public Review(string author, int star, string text)
-        {
-            Id = Guid.NewGuid();
-            Author = author;
-            Star = star;
-            Text = text;
-        }
-
-        public Review(ReviewDto reviewDto)
-        {
-            Id = Guid.NewGuid();
-            Author = reviewDto.Author;
-            Star = reviewDto.Star;
-            Text = reviewDto.Text;
-        }
-    }
-
-    public class ReviewDto
-    {
-        public string Author { get; set; }
-        public int Star { get; set; }
-        public string Text { get; set; }
     }
 }
