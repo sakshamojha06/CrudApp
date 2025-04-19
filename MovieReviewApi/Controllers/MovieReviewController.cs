@@ -13,9 +13,7 @@ namespace MovieReviewApi.Controllers
         {
             if (name == null) return BadRequest("Movie name cannot be empty");
 
-            var maxId = _movies.Count > 0 ? _movies.Max(m => m.id) : 0;
-
-            Movie movie = new Movie(maxId + 1,name);
+            var movie = new Movie(name);
 
             _movies.Add(movie);
 
@@ -23,10 +21,12 @@ namespace MovieReviewApi.Controllers
         }
 
         [HttpPost("{id}/reviews")]
-        public IActionResult CreateReview(int id, [FromBody] string review)
+        public IActionResult CreateReview(Guid id, [FromBody] ReviewDto newReview)
         {
-            var movie = _movies.FirstOrDefault(m => m.id == id);
+            var movie = _movies.FirstOrDefault(m => m.Id == id);
             if (movie == null) return BadRequest("Movie not found");
+
+            var review = new Review(newReview);
 
             movie.Reviews.Add(review);
 
@@ -40,9 +40,9 @@ namespace MovieReviewApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetMovieById(int id)
+        public IActionResult GetMovieById(Guid id)
         {
-            var movie = _movies.FirstOrDefault(m => m.id == id);
+            var movie = _movies.FirstOrDefault(m => m.Id == id);
 
             if (movie == null) return BadRequest("Movie not found");
 
@@ -50,11 +50,12 @@ namespace MovieReviewApi.Controllers
         }
 
         [HttpGet("{id}/reviews")]
-        public IActionResult GetMovieReviewsById(int id)
+        public IActionResult GetMovieReviewsById(Guid id)
         {
-            var movie = _movies.FirstOrDefault(m => m.id == id);
+            var movie = _movies.FirstOrDefault(m => m.Id == id);
 
             if (movie == null) return NotFound("Movie not found");
+
 
             return Ok(movie.Reviews);
         }
@@ -62,15 +63,43 @@ namespace MovieReviewApi.Controllers
 
     public class Movie
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<string> Reviews { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public List<Review> Reviews { get; set; }
 
-        public Movie(int id, string name)
+        public Movie(string name)
         {
-            this.id = id;
-            this.name = name;
-            this.Reviews = new List<string>();
+            Id = Guid.NewGuid();
+            Name = name;
+            Reviews = new List<Review>();
         }
+    }
+
+    public class Review: ReviewDto
+    {
+        public Guid Id { get; set; }
+
+        public Review(string author, int star, string text)
+        {
+            Id = Guid.NewGuid();
+            Author = author;
+            Star = star;
+            Text = text;
+        }
+
+        public Review(ReviewDto reviewDto)
+        {
+            Id = Guid.NewGuid();
+            Author = reviewDto.Author;
+            Star = reviewDto.Star;
+            Text = reviewDto.Text;
+        }
+    }
+
+    public class ReviewDto
+    {
+        public string Author { get; set; }
+        public int Star { get; set; }
+        public string Text { get; set; }
     }
 }
